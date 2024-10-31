@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class UserService {
     public UserEntity createUser(UserEntity userEntity) {
-        UserEntity.persist(userEntity);
+        UserEntity.persist(userEntity); // colocar return nessa linha, 
         return userEntity;
     }
 
@@ -29,15 +29,16 @@ public class UserService {
     public UserEntity updateUser(UUID userId, UserEntity userEntity) {
          var user = findById(userId);
 
-         user.username = userEntity.username;
+         user.username = userEntity.username; //usar encapsulamento, getUserName(userEntity.username)
 
-         UserEntity.persist(user);
+         UserEntity.persist(user); // colcar return nessa linha
 
         return user;
     }
 
     public void deleteById(UUID userId) {
-        var user = findById(userId);
+        var user = findById(userId); //vc está buscando o usuário com o id, e depois usando o mesmo id do usuário que vc buscou? User apenas o userId no delete
+                                    // se vc quis garanti que o usupario existia, essa validação está na forma errada
         UserEntity.deleteById(user.userId);
     }
 }
